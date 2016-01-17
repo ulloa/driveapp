@@ -50,7 +50,7 @@
 		 center: citymap[city].center,
 		 radius: Math.sqrt(citymap[city].prob) * 100
 	     });
-	 }
+	 };
      }
      // check for Geolocation support
 /*     if (navigator.geolocation) {
