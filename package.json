@@ -28,6 +28,7 @@
     "grunt-config-dir": "^0.3.2",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-stylus": "^0.21.0",
+    "grunt-copy-browser-modules": "^5.0.0",
     "grunt-copy-to": "0.0.10",
     "grunt-dustjs": "^1.2.1",
     "grunt-eslint": "^17.3.1",
