@@ -71,5 +71,6 @@
      };
 */
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgqGHydf7ZIC0kheaZRvfr7g2cwM65S5w&callback=initMap"
+<!--    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB39Zaa4Hss57nNT9h5QXbRkLCG7uZKIbA&callback=initMap" />  -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgqGHydf7ZIC0kheaZRvfr7g2cwM65S5w&callback=initMap" /> 
 {/body}
