@@ -71,7 +71,5 @@
      };
 */
     </script>
-
-    <h1>{@pre type="content" key="greeting"/}</h1>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgqGHydf7ZIC0kheaZRvfr7g2cwM65S5w&callback=initMap"
 {/body}
