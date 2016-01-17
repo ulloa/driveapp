@@ -1,4 +1,4 @@
-{>"layouts/master" /}
+1;2802;0c{>"layouts/master" /}
 
 {<body}
     <div id="map"></div>
@@ -6,11 +6,14 @@
 
      var citymap = {
 	 kidzone: {
-	     center: {lat: 33.7215192, lng: -117.7717849},
+	     center: {A: {lat: 33.7215192, lng: -117.7717849},
+		     B: {lat: 33.731192, lng: -117.7797849},
+		     C: {lat: 34.731192, lng: -117.7797849}
+		     },
 	     prob: 27
 	 },
 	 accidents: {
-	     center: {lat: 40.714, lng: -74.005},
+	     center: {lat: 33.700000, lng: -117.80000},
 	     prob: 84
 	 },
 	 theft: {
@@ -36,6 +39,18 @@
 	     map: map,
 	     icon: image
 	 });
+/*
+	 var kidZone = new google.maps.Marker({
+	     position: citymap.kidzone.center,
+	     map: map,
+	     icon: 'images/TurtleIconA.png'
+	 });
+*/
+	 var accidents = new google.maps.Marker({
+	     position: citymap.accidents.center,
+	     map: map,
+	     icon: 'images/AlertIconA.png'
+	 });
 
 /* Note: We scale the area of the circle based on the population.*/
 	 for (var city in citymap) {
@@ -50,6 +65,19 @@
 		 center: citymap[city].center,
 		 radius: Math.sqrt(citymap[city].prob) * 100
 	     });
+	     /* looping */
+	     if (city == 'kidzone') {
+		 for (var location in citymap[city].center) {
+		     console.log('test');
+		     var kidZone = new google.maps.Marker({
+			 position: citymap[city].center[location],
+			 map: map,
+			 icon: 'images/TurtleIconA.png'
+		     });
+		 };
+	     }
+
+
 	 };
      }
 /*     // check for Geolocation support */
