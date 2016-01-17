@@ -1,0 +1,43 @@
+{>"layouts/master" /}
+
+{<title}
+Vin Book
+{/title}
+
+{<head}
+{/head}
+
+{<body}
+    {>"layouts/navbar" /}
+    <div class="container" id="first">
+	{?allvins}
+	    {#allvins}
+		<div class="row">
+		    <div class="col-md-2">
+			<a href="/vinbook/{.id}"> <!--<img src="http://i.imgur.com/0yw1XeE.jpg">--><p> see item</p></a>
+		    </div>
+		    <div class="col-md-10">
+			<div class="col-md-4">
+			    <h2>{.numberstring}</h2>
+			</div>
+			<div class="col-md-8">
+			    <h2>{.imageurl}</h2>
+			</div>
+		    </div>
+		</div>
+		<div class="row">
+		    <p>{.year}</p>
+		</div>
+	    {/allvins}
+	{/allvins}
+    </div>
+{/body}
+<script>
+ function imageOnError(img) {
+     img.onerror = '';
+     var stub = $('<div />').css({ 'height': $(img).height(), 'width': $(img).width() })
+			    .addClass('stub').html('<p>Sorry, this image is currently not available.</p>');
+     $(img).parent().html(stub);
+     return true;
+ }
+</script>

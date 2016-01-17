@@ -1,0 +1,83 @@
+{>"layouts/master" /}
+
+{<title}
+Vin Upload
+{/title}
+
+{<head}
+{/head}
+
+{<body}
+    {>"layouts/navbar" /}
+    <div class="container" id="first">
+	<form method="post" action="/vinupload">
+	    <input type="hidden" value="{_csrf}" name="_csrf" />
+	    Vin Number:<br>
+	    <input type="text" name="numberstring" data-name="numberstring" value="1231241214">
+	    <br>
+	    Image for vin:<br>
+	    <input type="text" name="imageurl" data-name="imageurl" value="image location.jpg">
+	    <br><br>
+	    Make:<br>
+	    <input type="text" name="make" data-name="make" value="Toyota">
+	    <br><br>
+	    Model:<br>
+	    <input type="text" name="model" data-name="model" value="Corolla">
+	    <br><br>
+	    <input type="submit" value="Add new">
+	</form>
+	{?thisvin}
+	    {#thisvin}
+		<div class="row">
+		    <div class="col-md-2">
+			<h2> edit old vin </h2>
+			<img src="{.imageurl}" onerror="return imageOnError(this);" />
+		    </div>
+		    <div class="col-md-10">
+			<div class="col-md-4">
+			    <h2>{.numberstring}</h2>
+			</div>
+			<div class="col-md-8">
+			    <h2>{.make}</h2>
+			</div>
+			<div class="col-md-8">
+			    <h2>{.model}</h2>
+			</div>
+			<div class="col-md-8">
+			    <h2>{.year}</h2>
+			</div>
+		    </div>
+		</div>
+
+
+
+		<form method="post" action="/vinupload/{.id}">
+		    <input type="hidden" value="{_csrf}" name="_csrf" />
+		    Vin Number:<br>
+		    <input type="text" name="numberstring" data-name="numberstring" value="{.numberstring}">
+		    <br>
+		    Image for vin:<br>
+		    <input type="text" name="imageurl" data-name="imageurl" value="{.imageurl}">
+		    <br><br>
+		    Make:<br>
+		    <input type="text" name="make" data-name="make" value="{.make}">
+		    <br><br>
+		    Model:<br>
+		    <input type="text" name="model" data-name="model" value="{.model}">
+		    <br><br>
+		    <input type="submit" value="Save changes">
+		</form>
+
+	    {/thisvin}
+	{/thisvin}
+    </div>
+{/body}
+<script>
+ function imageOnError(img) {
+     img.onerror = '';
+     var stub = $('<div />').css({ 'height': $(img).height(), 'width': $(img).width() })
+			    .addClass('stub').html('<p>Sorry, this image is currently not available.</p>');
+     $(img).parent().html(stub);
+     return true;
+ }
+</script>
