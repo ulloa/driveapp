@@ -37,8 +37,7 @@
 	</style>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script
-	    src="https://maps.googleapis.com/maps/api/js?libraries=drawing,places"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?libraries=drawing,places"></script>
 	<script>
 	 var apiKey = 'AIzaSyAt5i19SzEouGS7lFrcnxYCEvwNLpP1TyE';
 
@@ -152,7 +151,7 @@
 	     polylines.push(snappedPolyline);
 	 }
 
-
+/*
 	 function post(path, params, method) {
 	     method = method || "post"; 
 
@@ -161,7 +160,7 @@
 	     form.setAttribute("action", path);
 
 
-/*	     for(var key in params) {
+	     for(var key in params) {
 		 if(params.hasOwnProperty(key)) {
 		     var hiddenField = document.createElement("input");
 		     hiddenField.setAttribute("type", "hidden");
@@ -170,16 +169,16 @@
 
 		     form.appendChild(hiddenField);
 		 }
-	     }*/
+	     }
 	     form.submit();
 	 }
 
-
+*/
 
 	 function getAndDrawSpeedLimits() {
 	     for (var i = 0; i <= placeIdArray.length / 100; i++) {
 
-									   var start = i * 100;
+		 var start = i * 100;
 		 var end = Math.min((i + 1) * 100 - 1, placeIdArray.length);
 
 		 drawSpeedLimits(start, end);
@@ -208,9 +207,7 @@
 		 var speedLimit = speedData.speedLimits[i].speedLimit;
 		 var color = getColorForSpeed(speedLimit);
 
-
 		 var coords = snappedCoordinates.slice(start + i, start + i + 2);
-
 		 var snappedPolyline = new google.maps.Polyline({
 		     path: coords,
 		     strokeColor: color,
