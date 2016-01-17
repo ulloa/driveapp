@@ -1,4 +1,4 @@
-1;2802;0c{>"layouts/master" /}
+{>"layouts/master" /}
 
 {<body}
     <div id="map"></div>
@@ -25,7 +25,7 @@
 	     prob: 60
 	 }
      };
-
+     var marker = null;
      var map;
      function initMap() {
 	 map = new google.maps.Map(document.getElementById('map'), {
@@ -55,16 +55,6 @@
 /* Note: We scale the area of the circle based on the population.*/
 	 for (var city in citymap) {
 	     /* Add the circle for this city to the map. */
-	     var cityCircle = new google.maps.Circle({
-		 strokeColor: '#FF0000',
-		 strokeOpacity: 0.8,
-		 strokeWeight: 2,
-		 fillColor: '#FF0000',
-		 fillOpacity: 0.35,
-		 map: map,
-		 center: citymap[city].center,
-		 radius: Math.sqrt(citymap[city].prob) * 100
-	     });
 	     /* looping */
 	     if (city == 'kidzone') {
 		 for (var location in citymap[city].center) {
@@ -74,7 +64,29 @@
 			 map: map,
 			 icon: 'images/TurtleIconA.png'
 		     });
+		     var cityCircle = new google.maps.Circle({
+			 strokeColor: '#FF0000',
+			 strokeOpacity: 0.8,
+			 strokeWeight: 2,
+			 fillColor: '#FF0000',
+			 fillOpacity: 0.35,
+			 map: map,
+			 center: citymap[city].center[location],
+			 radius: Math.sqrt(citymap[city].prob) * 100
+		     });
 		 };
+	     }
+	     else {
+		 var cityCircle = new google.maps.Circle({
+		     strokeColor: '#FF0000',
+		     strokeOpacity: 0.8,
+		     strokeWeight: 2,
+		     fillColor: '#FF0000',
+		     fillOpacity: 0.35,
+		     map: map,
+		     center: citymap[city].center,
+		     radius: Math.sqrt(citymap[city].prob) * 100
+		 });
 	     }
 
 
@@ -99,7 +111,7 @@
      };
 
 
-     var marker = null;
+
 
      function autoUpdate() {
 	 navigator.geolocation.getCurrentPosition(function(position) {  
@@ -128,6 +140,19 @@
 
      autoUpdate();
 
+/* alert for entering radii*/
+
+     google.maps.event.addListener(marker, function(event) {
+
+	 var currPos = new google.maps.LatLng(event.latLng.k, event.latLng.B);
+
+	 var dist = getDistance(currPos, cityCircle.center);
+
+	 if(dist < 10){
+	     alert('Marker is inside');
+	 }
+
+     });
 
 
     </script>
