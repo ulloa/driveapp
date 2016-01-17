@@ -52,7 +52,7 @@
 	     });
 	 };
      }
-     // check for Geolocation support
+/*     // check for Geolocation support */
      if (navigator.geolocation) {
 	 console.log('Geolocation is supported!');
      }
@@ -94,7 +94,7 @@
 	     map.setCenter(newPoint);
 	 }); 
 
-	 // Call the autoUpdate() function every 5 seconds
+/*	 // Call the autoUpdate() function every 5 seconds */
 	 setTimeout(autoUpdate, 5000);
      }
 
