@@ -21,6 +21,11 @@
         }
     },
 
+    "databaseConfig": {
+        "host": "localhost",
+        "database": "appo"
+    },
+
     "dust": {
         "helpers": [
     

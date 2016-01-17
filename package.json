@@ -10,6 +10,10 @@
     "all": "npm run build && npm run test"
   },
   "dependencies": {
+    "bcrypt": "^0.8.5",
+    "body-parser": "^1.14.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.0.0",
     "construx": "^1.0.0",
     "construx-copier": "^1.0.0",
     "construx-dustjs": "^1.1.0",
@@ -17,9 +21,13 @@
     "dust-makara-helpers": "^4.1.2",
     "eslint": "^1.10.3",
     "express": "^4.13.3",
+    "express-session": "^1.12.1",
     "kraken-js": "^1.0.3",
     "makara": "^2.0.3",
     "method-override": "^2.3.5",
+    "mongoose": "^4.3.4",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6",
     "node-zxing": "^0.1.4"
   },
   "devDependencies": {

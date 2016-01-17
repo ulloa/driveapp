@@ -2,13 +2,15 @@
 
 var express = require('express');
 var kraken = require('kraken-js');
+var options = require('./lib/spec')();
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var flash = require('connect-flash');
+var passport = require('passport');
+require('./config/passport')(passport);
 
-
-
-var options, app;
+var app;
 
 /*
  * Create and configure application. Also exports application instance for use by tests.
@@ -16,15 +18,6 @@ var options, app;
  */
 
 
-options = {
-    onconfig: function (config, next) {
-        /*
-         * Add any additional config setup or overrides here. `config` is an initialized
-         * `confit` (https://github.com/krakenjs/confit/) configuration object.
-         */
-        next(null, config);
-    }
-};
 
 app = module.exports = express();
 
@@ -40,6 +33,17 @@ app.use(methodOverride(function(req, res){
 	    return method;
   }
 }));
+
+
+
+app.use(session({ secret: 'peoplespace' })); // session secret                
+
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions                     
+ 
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+
 
 app.use(kraken(options));
 app.on('start', function () {

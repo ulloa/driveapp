@@ -1,6 +1,7 @@
 {>"layouts/master" /}
 
 {<body}
+    {>"layouts/navbar" /}
     <div id="map"></div>
     <script type="text/javascript">
 
@@ -130,20 +131,26 @@
 		 });
 	     }
 
-/*	     // Center the map on the new position */
-	     map.setCenter(newPoint);
+/*	     // Center the map on the new position 
+	     map.setCenter(newPoint); */
 	 }); 
 
 /*	 // Call the autoUpdate() function every 5 seconds */
 	 setTimeout(autoUpdate, 5000);
+
+
      }
 
      autoUpdate();
 
 /* alert for entering radii*/
+     google.maps.Map.addListener(map, 'click', function() {
+	console.log('lfdkjalsdkfjj');
+     });
 
-     google.maps.event.addListener(marker, function(event) {
-
+/*
+     google.maps.event.addListener(map, 'center_changed', function(event) {
+	 console.log('teslkajlkjda');
 	 var currPos = new google.maps.LatLng(event.latLng.k, event.latLng.B);
 
 	 var dist = getDistance(currPos, cityCircle.center);
@@ -153,7 +160,7 @@
 	 }
 
      });
-
+*/
 
     </script>
 <!--    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB39Zaa4Hss57nNT9h5QXbRkLCG7uZKIbA&callback=initMap" />  -->

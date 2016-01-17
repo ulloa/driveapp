@@ -1,0 +1,6 @@
+{>"layouts/master" /}
+
+{<body}
+    {>"layouts/navbar" /}
+    <h1>{@pre type="content" key="This is the about page"/}</h1>
+{/body}
