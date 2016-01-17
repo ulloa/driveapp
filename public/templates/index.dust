@@ -36,7 +36,7 @@
 	     map: map,
 	     icon: image
 	 });
-	 
+     }
   // Note: We scale the area of the circle based on the population.
 /*	 for (var city in citymap) {
 	     // Add the circle for this city to the map.
