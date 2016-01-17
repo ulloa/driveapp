@@ -11,7 +11,7 @@
 	<meta name="copyright" content="Copyright (c) 2015 Uniq" />
 	<meta name="description" content="Uniq is offers high quality education at affordable prices. Uniq has classes for anyone wanting to learn at different prices." />
 	<meta name="keywords" content="university, ivy league, research, undergraduate research, graduate research, transnational, agriculture and life sciences, architecture, art, planning, engineering, hotel administration, human ecology, industrial and labor relations, law, business management, medicine, pre-med, veterinary medicine, vet school" />
-	<link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fsocial-buttons.css">
@@ -24,10 +24,7 @@
 	</style>
     </head>
     <body>
-
-	<script>
-	</script>
-            {+body /}
+        {+body /}
 
 
     
