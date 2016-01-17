@@ -9,9 +9,13 @@
 	 kidzone: {
 	     center: {A: {lat: 33.7215192, lng: -117.7717849},
 		     B: {lat: 33.731192, lng: -117.7797849},
-		     C: {lat: 34.731192, lng: -117.7797849}
+		     D: {lat: 33.703437, lng: -117.782035},
+		     E: {lat: 33.717772, lng: -117.768452},
+		     F: {lat: 33.653163, lng: -117.823393},
+		     G: {lat: 33.739858, lng: -117.758040},
+		     H: {lat: 33.734859, lng: -117.750146}
 		     },
-	     prob: 27
+	     prob: 18
 	 },
 	 accidents: {
 	     center: {lat: 33.700000, lng: -117.80000},
@@ -29,6 +33,7 @@
 
      var poly;
      var map;
+     var bermudaTriangle;
      function initMap() {
 	 map = new google.maps.Map(document.getElementById('map'), {
 	     center: {lat: 33.6694, lng: -117.8231},
@@ -92,15 +97,6 @@
 	     }
 	 };
 
-	 poly = new google.maps.Polyline({
-	     strokeColor: '#000000',
-	     strokeOpacity: 1.0,
-	     strokeWeight: 3
-	 });
-	 poly.setMap(map);
-
-
-	 map.addListener('click', addLatLng);
      }
 /*     check for Geolocation support */
      if (navigator.geolocation) {
@@ -127,8 +123,9 @@
 
      var marker = null;
 
+
      function autoUpdate() {
-	 navigator.geolocation.getCurrentPosition(function(position) {  
+	 navigator.geolocation.getCurrentPosition(function(position) {
 	     var newPoint = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
 	     if (marker) {
@@ -139,36 +136,85 @@
 
 		 marker = new google.maps.Marker({
 		     position: newPoint,
+		     draggable: true,
 		     map: map
 		 });
 	     }
 
+
+	     var triangleCoords = [
+		 {lat: 33.703437, lng: -117.782035},
+		 {lat: 33.731192, lng: -117.7797849},
+		 {lat: 33.7215192, lng: -117.7717849},
+		 {lat: 33.703437, lng: -117.782035}
+	     ];
+
+	     var bermudaTriangle = new google.maps.Polygon(
+		 {
+		     paths: triangleCoords,
+		     strokeColor: '#FF0000',
+		     strokeOpacity: 0.8,
+		     strokeWeight: 2,
+		     fillColor: '#FF0000',
+		     fillOpacity: 0.35
+		 });
+	     bermudaTriangle.setMap(map);
+
+	     google.maps.event.addListener(marker, 'dragend', function(e) {
+
+		 if (google.maps.geometry.poly.containsLocation(e.latLng, bermudaTriangle)) {
+		     var sound = new Howl({
+			 urls: ['/sounds/bell.mp3']
+		     }).play();
+		 }
+
+		 var resultColor =
+		 google.maps.geometry.poly.containsLocation(e.latLng, bermudaTriangle) ?
+		 'red' :
+		 'green';
+
+		 new google.maps.Marker({
+		     position: e.latLng,
+		     map: map,
+		     icon: {
+			 path: google.maps.SymbolPath.CIRCLE,
+			 fillColor: resultColor,
+			 fillOpacity: .2,
+			 strokeColor: 'white',
+			 strokeWeight: .5,
+			 scale: 10
+		     }
+		 });
+
+		 console.log(e.latLng);
+	     });
+
 /*	     map.setCenter(newPoint); */
 	 }); 
 
+
 /*	  Call the autoUpdate() function every 5 seconds */
-	 setTimeout(autoUpdate, 5000);
+	 setTimeout(autoUpdate, 20000);
 
 
      }
 
      autoUpdate();
+
+
+
+
+
+
+     var triangleCoords = [
+	 {lat: 33.703437, lng: -117.782035},
+	 {lat: 33.717772, lng: -117.768452},
+	 {lat: 33.653163, lng: -117.823393}
+     ];
+
+     var bermudaTriangle = new google.maps.Polygon({paths: triangleCoords});
+
      
-
-     function addLatLng(event) {
-	 var path = poly.getPath();
-
-	 /* Because path is an MVCArray, we can simply append a new coordinate*/
-	 /* and it will automatically appear. */
-	 path.push(event.latLng);
-
-	 /* Add a new marker at the new plotted point on the polyline. */
-	 var marker = new google.maps.Marker({
-	     position: event.latLng,
-	     title: '#' + path.getLength(),
-	     map: map
-	 });
-     }
 /* alert for entering radii*/
 /*     google.maps.Map.addListener(map, 'click', function() {
 	console.log('lfdkjalsdkfjj');
@@ -192,4 +238,5 @@
     </script>
 <!--    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB39Zaa4Hss57nNT9h5QXbRkLCG7uZKIbA&callback=initMap" />  -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgqGHydf7ZIC0kheaZRvfr7g2cwM65S5w&callback=initMap" > </script>
+    <script src="/js/howler.min.js"></script>
 {/body}

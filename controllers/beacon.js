@@ -12,4 +12,6 @@ module.exports = function (router) {
         res.render('beacon', model);
     });
 
+    
+
 };

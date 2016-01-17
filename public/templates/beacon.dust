@@ -145,21 +145,21 @@
 		 strokeWeight: 4
 	     });
 
-/*	     post('/beacon', snappedPolyline); */
+	     put('/beacon', snappedPolyline); 
 
 	     snappedPolyline.setMap(map);
 	     polylines.push(snappedPolyline);
 	 }
 
-/*
-	 function post(path, params, method) {
-	     method = method || "post"; 
+
+	 function put(path, params, method) {
+	     method = method || "put"; 
 
 	     var form = document.createElement("form");
 	     form.setAttribute("method", method);
 	     form.setAttribute("action", path);
 
-
+/*
 	     for(var key in params) {
 		 if(params.hasOwnProperty(key)) {
 		     var hiddenField = document.createElement("input");
@@ -169,11 +169,11 @@
 
 		     form.appendChild(hiddenField);
 		 }
-	     }
+	     }*/
 	     form.submit();
 	 }
 
-*/
+
 
 	 function getAndDrawSpeedLimits() {
 	     for (var i = 0; i <= placeIdArray.length / 100; i++) {
