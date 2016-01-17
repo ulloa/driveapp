@@ -55,8 +55,7 @@
 	     };
 	     map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-	     // Adds a Places search box. Searching for a place will center the map on that
-	     // location.
+
 	     map.controls[google.maps.ControlPosition.RIGHT_TOP].push(
 		 document.getElementById('bar'));
 	     var autocomplete = new google.maps.places.Autocomplete(
@@ -72,8 +71,7 @@
 		 }
 	     });
 
-	     // Enables the polyline drawing control. Click on the map to start drawing a
-	     // polyline. Each click will add a new vertice. Double-click to stop drawing.
+
 	     drawingManager = new google.maps.drawing.DrawingManager({
 		 drawingMode: google.maps.drawing.OverlayType.POLYLINE,
 		 drawingControl: true,
@@ -90,7 +88,7 @@
 	     });
 	     drawingManager.setMap(map);
 
-	     // Snap-to-road when the polyline is completed.
+
 	     drawingManager.addListener('polylinecomplete', function(poly) {
 		 var path = poly.getPath();
 		 polylines.push(poly);
@@ -98,7 +96,7 @@
 		 runSnapToRoad(path);
 	     });
 
-	     // Clear button. Click to remove all polylines.
+
 	     $('#clear').click(function(ev) {
 		 for (var i = 0; i < polylines.length; ++i) {
 		     polylines[i].setMap(null);
@@ -109,7 +107,7 @@
 	     });
 	 }
 
-	 // Snap a user-created polyline to roads and draw the snapped path
+
 	 function runSnapToRoad(path) {
 	     var pathValues = [];
 	     for (var i = 0; i < path.getLength(); i++) {
@@ -127,7 +125,7 @@
 	     });
 	 }
 
-	 // Store snapped polyline returned by the snap-to-road method.
+
 	 function processSnapToRoadResponse(data) {
 	     snappedCoordinates = [];
 	     placeIdArray = [];
@@ -140,7 +138,7 @@
 	     }
 	 }
 
-	 // Draws the snapped polyline (after processing snap-to-road response).
+
 	 function drawSnappedPolyline() {
 	     var snappedPolyline = new google.maps.Polyline({
 		 path: snappedCoordinates,
@@ -177,12 +175,10 @@
 	 }
 
 
-	 // Gets speed limits (for 100 segments at a time) and draws a polyline
-	 // color-coded by speed limit. Must be called after processing snap-to-road
-	 // response.
+
 	 function getAndDrawSpeedLimits() {
 	     for (var i = 0; i <= placeIdArray.length / 100; i++) {
-		 // Ensure that no query exceeds the max 100 placeID limit.
+
 									   var start = i * 100;
 		 var end = Math.min((i + 1) * 100 - 1, placeIdArray.length);
 
@@ -190,8 +186,7 @@
 	     }
 	 }
 
-	 // Gets speed limits for a 100-segment path and draws a polyline color-coded by
-	 // speed limit. Must be called after processing snap-to-road response.
+
 	 function drawSpeedLimits(start, end) {
 	     var placeIdQuery = '';
 	     for (var i = start; i < end; i++) {
@@ -206,15 +201,15 @@
 	     );
 	 }
 
-	 // Draw a polyline segment (up to 100 road segments) color-coded by speed limit.
+
 	 function processSpeedLimitResponse(speedData, start) {
 	     var end = start + speedData.speedLimits.length;
 	     for (var i = 0; i < speedData.speedLimits.length - 1; i++) {
 		 var speedLimit = speedData.speedLimits[i].speedLimit;
 		 var color = getColorForSpeed(speedLimit);
 
-		 // Take two points for a single-segment polyline.
-								  var coords = snappedCoordinates.slice(start + i, start + i + 2);
+
+		 var coords = snappedCoordinates.slice(start + i, start + i + 2);
 
 		 var snappedPolyline = new google.maps.Polyline({
 		     path: coords,
