@@ -68,9 +68,9 @@ module.exports = function (router) {
     });
 
     router.delete('/:id', function (req, res) {
-	Course.findByIdAndRemove(req.params.id, function (err, oldCourse) {
+	VinbookModel.findByIdAndRemove(req.params.id, function (err, oldVin) {
             console.log('save error', err);
-            res.redirect('/admin/classes');
+            res.redirect('/vinbook');
 	});
     });
 

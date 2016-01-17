@@ -59,6 +59,10 @@ Vin Upload
 		    Image for vin:<br>
 		    <input type="text" name="imageurl" data-name="imageurl" value="{.imageurl}">
 		    <br><br>
+<!--		    Or take picture:<br>
+		    <input type="file" name="imageurl" data-name="imageurl" 
+		    <br><br> -->
+
 		    Make:<br>
 		    <input type="text" name="make" data-name="make" value="{.make}">
 		    <br><br>
@@ -67,6 +71,11 @@ Vin Upload
 		    <br><br>
 		    <input type="submit" value="Save changes">
 		</form>
+		<form method="post" action="/vinupload/{.id}">
+                    <input type="submit" value="Delete" class="button link-button lightred-background"/>
+                    <input type="hidden" name="_csrf" value="{_csrf}"/>
+                    <input type="hidden" name="_method" value="DELETE"/>
+                </form>
 
 	    {/thisvin}
 	{/thisvin}
