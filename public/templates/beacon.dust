@@ -145,7 +145,7 @@
 		 strokeWeight: 4
 	     });
 
-	     post('/beacon', snappedPolyline);
+/*	     post('/beacon', snappedPolyline); */
 
 	     snappedPolyline.setMap(map);
 	     polylines.push(snappedPolyline);
